@@ -447,7 +447,7 @@
     <header class="section__head reveal">
       <p class="eyebrow">Portfolio</p>
       <h2 class="section__title">Selected work.</h2>
-      <p class="section__sub">Research projects and the reporting products I built inside each role. Select a card for the full breakdown.</p>
+      <p class="section__sub">Personal projects, built end-to-end and open-sourced on GitHub. Select a card for the full breakdown.</p>
     </header>
 
     <div class="filters reveal" role="group" aria-label="Filter projects by tool">
@@ -466,204 +466,145 @@
           <p class="card__kicker">R · Econometrics</p>
           <h3 class="card__title">Macroeconomic Indicators &amp; Stock Market Returns</h3>
           <p class="card__type">Research Project</p>
+          <a class="card__gh" href="https://github.com/Anjali-Talan/Impact-of-Macroeconomic-Indicators-on-Stock-Market-Returns/tree/main" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg>GitHub</a>
         </div>
         <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
         <template class="card__detail">
-          <p class="modal__lead">A 27-year time-series study of what actually moves Indian equity returns — and over what horizon.</p>
-          <h4>The question</h4>
-          <p>Indian equity commentary tends to attribute index moves to whatever macro number printed that week. I wanted to test which macroeconomic variables hold a genuine long-run relationship with returns, and which only bite in the short run.</p>
-          <h4>Approach</h4>
+          <p class="modal__lead">A 27-year time-series study (1996–2023) of which macroeconomic variables actually move Nifty 50 and BSE Sensex returns — and over what horizon.</p>
+          <h4>The objective</h4>
           <ul>
-            <li>Assembled and cleaned <strong>27 years of Nifty 50 and BSE Sensex data (1996–2023)</strong> alongside macroeconomic indicators.</li>
-            <li>Ran <strong>ADF tests</strong> to establish stationarity and the correct order of integration for each series.</li>
-            <li>Modelled the system with <strong>VAR</strong>, then <strong>VECM</strong> to separate long-run equilibrium from short-run correction.</li>
+            <li>Examine long-run relationships between GDP, inflation, FDI, unemployment, interest rates and exchange rate against Nifty 50 &amp; BSE Sensex using <strong>Johansen Cointegration</strong>.</li>
+            <li>Analyse short-term adjustments with a <strong>Vector Error Correction Model (VECM)</strong>.</li>
+            <li>Test predictive relationships with <strong>Granger Causality</strong>, and forecast using <strong>Impulse Response Functions (IRF)</strong> and VAR.</li>
           </ul>
-          <h4>What it found</h4>
+          <h4>Method</h4>
           <ul>
-            <li><strong>GDP and FDI</strong> were statistically significant long-run drivers of equity returns.</li>
-            <li><strong>Inflation</strong> acted as a short-term drag rather than a structural factor.</li>
+            <li>Assembled <strong>1996–2023</strong> data on Nifty 50, BSE Sensex and key macro indicators from RBI, NSE, BSE, World Bank and IMF.</li>
+            <li>Ran <strong>ADF tests</strong> for stationarity, then Johansen Cointegration, VECM, Granger Causality and IRF/VAR forecasting in R (tseries, urca, vars, lmtest, ggplot2).</li>
           </ul>
-          <p class="modal__meta"><strong>Tools:</strong> R · ADF · VAR · VECM · Time-series econometrics</p>
+          <h4>Key findings</h4>
+          <ul>
+            <li><strong>GDP</strong> significantly drives stock market returns, confirmed by Granger causality and impulse response functions.</li>
+            <li><strong>Inflation and unemployment</strong> negatively affect short-term returns; interest rate hikes suppress performance.</li>
+            <li>Long-run cointegration holds — short-run shocks are absorbed over time — with forecasts pointing to continued upward trends alongside rising inflation risk.</li>
+          </ul>
+          <p class="modal__meta"><strong>Tools:</strong> R (tseries, urca, vars, lmtest, ggplot2) · ADF · Johansen Cointegration · VECM · Granger Causality · VAR/IRF</p>
+          <a class="btn btn--ghost btn--sm" href="https://github.com/Anjali-Talan/Impact-of-Macroeconomic-Indicators-on-Stock-Market-Returns/tree/main" target="_blank" rel="noopener" style="margin-top:1rem">View on GitHub<svg class="ico"><use href="#i-github"/></svg></a>
         </template>
       </article>
 
-      <article class="card card--project reveal" data-reveal-delay="60" data-cat="powerbi sql excel" tabindex="0" role="button" aria-label="Open details: Portfolio Performance and Benchmark Dashboard">
-        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-line"/></svg></div>
-        <div class="card__body">
-          <p class="card__kicker">Power BI · SQL · Excel</p>
-          <h3 class="card__title">Portfolio Performance &amp; Benchmark Dashboard</h3>
-          <p class="card__type">Yes Securities</p>
-        </div>
-        <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
-        <template class="card__detail">
-          <p class="modal__lead">A single Power BI view for portfolio performance, sector-wise trends and benchmark returns — replacing a stack of manual workbooks.</p>
-          <h4>The brief</h4>
-          <p>Investment advisors and portfolio managers needed performance and benchmark reporting on a regular cadence. The existing process was assembled by hand each cycle, which made it slow and hard to trust.</p>
-          <h4>What I built</h4>
-          <ul>
-            <li>Automated Excel reporting models feeding a Power BI dashboard covering portfolio performance, sector-wise trends and benchmark returns.</li>
-            <li>SQL extraction and transformation layer pulling investment and portfolio data straight from the relational source.</li>
-            <li>Validation and reconciliation steps built into the refresh, rather than bolted on afterwards.</li>
-          </ul>
-          <h4>Impact</h4>
-          <ul>
-            <li><strong>30%</strong> reduction in manual reporting effort.</li>
-            <li><strong>25%</strong> faster report turnaround, with data integrity maintained.</li>
-          </ul>
-          <p class="modal__meta"><strong>Tools:</strong> Power BI · SQL · Advanced Excel (Power Query, Pivot Tables)</p>
-        </template>
-      </article>
-
-      <article class="card card--project reveal" data-reveal-delay="120" data-cat="excel sql" tabindex="0" role="button" aria-label="Open details: Equity Fundamental and Comparative Screener">
-        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-table"/></svg></div>
-        <div class="card__body">
-          <p class="card__kicker">Advanced Excel · SQL</p>
-          <h3 class="card__title">Equity Fundamental &amp; Comparative Screener</h3>
-          <p class="card__type">Yes Securities</p>
-        </div>
-        <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
-        <template class="card__detail">
-          <p class="modal__lead">Fundamental and comparative analysis across 500+ listed companies, held to a 98%+ accuracy standard.</p>
-          <h4>The brief</h4>
-          <p>Investment research needed consistent, comparable fundamentals across a wide universe of listed companies — not per-analyst spreadsheets with per-analyst assumptions.</p>
-          <h4>What I built</h4>
-          <ul>
-            <li>A processing layer over financial datasets for <strong>500+ listed companies</strong> using Power Query, Pivot Tables and XLOOKUP, with SQL for the heavier extraction.</li>
-            <li>Standardised ratio calculations — <strong>P/E, ROE, ROCE, EPS, Debt-to-Equity</strong> — so comparisons were like-for-like.</li>
-            <li>A validation and reconciliation pass that reconciled figures back to source before anything reached research.</li>
-          </ul>
-          <h4>Impact</h4>
-          <ul><li><strong>98%+ data accuracy</strong> sustained across the universe, feeding investment research and portfolio strategy.</li></ul>
-          <p class="modal__meta"><strong>Tools:</strong> Advanced Excel (Power Query, Pivot Tables, XLOOKUP) · SQL</p>
-        </template>
-      </article>
-
-      <article class="card card--project reveal" data-cat="sql" tabindex="0" role="button" aria-label="Open details: Investment Data SQL Layer and Query Optimisation">
-        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-flow"/></svg></div>
-        <div class="card__body">
-          <p class="card__kicker">SQL</p>
-          <h3 class="card__title">Investment Data SQL Layer &amp; Query Optimisation</h3>
-          <p class="card__type">Yes Securities</p>
-        </div>
-        <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
-        <template class="card__detail">
-          <p class="modal__lead">Rewriting the extraction layer so reporting stopped waiting on the database.</p>
-          <h4>The problem</h4>
-          <p>Report turnaround was being held up in the extract step. Queries had grown organically and were doing more work than the outputs required.</p>
-          <h4>What I did</h4>
-          <ul>
-            <li>Developed and optimised SQL queries to extract, transform and analyse investment and portfolio data from relational databases.</li>
-            <li>Restructured the transformation logic so downstream Excel and Power BI models consumed a clean, consistent shape.</li>
-            <li>Kept validation in-line so speed gains never came at the cost of data integrity.</li>
-          </ul>
-          <h4>Impact</h4>
-          <ul><li><strong>25%</strong> reduction in report turnaround time, with integrity maintained.</li></ul>
-          <p class="modal__meta"><strong>Tools:</strong> SQL · Relational databases</p>
-        </template>
-      </article>
-
-      <article class="card card--project reveal" data-reveal-delay="60" data-cat="excel sql" tabindex="0" role="button" aria-label="Open details: Budget vs Actual Variance and Profitability Model">
+      <article class="card card--project reveal" data-reveal-delay="60" data-cat="powerbi excel sql" tabindex="0" role="button" aria-label="Open details: HR and Sales Analytics Dashboard">
         <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-bars"/></svg></div>
         <div class="card__body">
-          <p class="card__kicker">Advanced Excel · SQL</p>
-          <h3 class="card__title">Budget vs. Actual Variance &amp; Profitability Model</h3>
-          <p class="card__type">Dreamtech Electronics</p>
+          <p class="card__kicker">Power BI · Excel · SQL</p>
+          <h3 class="card__title">HR &amp; Sales Analytics Dashboard</h3>
+          <p class="card__type">Personal Project</p>
+          <a class="card__gh" href="https://github.com/Anjali-Talan/HR-Sales-Analytics-Dashboard-/tree/main" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg>GitHub</a>
         </div>
         <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
         <template class="card__detail">
-          <p class="modal__lead">A repeatable variance pack for finance stakeholders, replacing a rebuilt-from-scratch monthly cycle.</p>
+          <p class="modal__lead">Two Power BI dashboards in one project — employee attrition and sales performance — turning raw HR and sales data into decisions teams can act on.</p>
           <h4>The brief</h4>
-          <p>Finance needed budget vs. actual, variance and profitability analysis on a regular cadence. I started by gathering the budgeting and variance-reporting requirements directly from the stakeholders who'd be reading it.</p>
-          <h4>What I built</h4>
+          <p>A compact business-analytics project combining HR Employee Attrition Analysis and Sales Performance Analysis, built to turn raw business data into clear KPIs, trends and actionable insight.</p>
+          <h4>HR employee attrition analysis</h4>
           <ul>
-            <li>A structured variance model in Advanced Excel, with SQL feeding the underlying actuals.</li>
-            <li>Profitability analysis layered on the same base, so budget, variance and margin all reconciled to one source.</li>
-            <li>Analysis of Income Statements, Balance Sheets and Cash Flow Statements supporting forecasting and financial planning.</li>
+            <li>Analysed <strong>1,470 employees</strong> with 237 attritions — an overall attrition rate of <strong>16.1%</strong>.</li>
+            <li>Overtime employees showed a <strong>30.5%</strong> attrition rate versus 10.4% for those without overtime.</li>
+            <li>Sales had the highest departmental attrition (~20.6%); entry-level employees the highest job-level attrition (~26.3%); Sales Representatives the highest by role (~39.8%).</li>
           </ul>
-          <h4>Impact</h4>
+          <h4>Sales performance analysis</h4>
           <ul>
-            <li><strong>8%</strong> improvement in reporting accuracy.</li>
-            <li><strong>20%</strong> reduction in manual effort per cycle.</li>
+            <li>Total sales of <strong>~$34.49M</strong> across 209K units sold, with December the strongest month (~$4.61M).</li>
+            <li>San Francisco led city sales (~$8.26M); MacBook Pro Laptop was the top-revenue product (~$8.04M); AAA Batteries (4-pack) the top seller by volume (~31K units).</li>
           </ul>
-          <p class="modal__meta"><strong>Tools:</strong> Advanced Excel · SQL · Financial statement analysis</p>
+          <p class="modal__meta"><strong>Tools:</strong> Power BI · Excel/CSV · SQL</p>
+          <a class="btn btn--ghost btn--sm" href="https://github.com/Anjali-Talan/HR-Sales-Analytics-Dashboard-/tree/main" target="_blank" rel="noopener" style="margin-top:1rem">View on GitHub<svg class="ico"><use href="#i-github"/></svg></a>
         </template>
       </article>
 
-      <article class="card card--project reveal" data-reveal-delay="120" data-cat="powerbi excel" tabindex="0" role="button" aria-label="Open details: Financial KPI and Cash Flow Dashboard">
+      <article class="card card--project reveal" data-reveal-delay="120" data-cat="excel" tabindex="0" role="button" aria-label="Open details: FURM Store Sales Analysis">
         <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-donut"/></svg></div>
         <div class="card__body">
-          <p class="card__kicker">Power BI · Excel</p>
-          <h3 class="card__title">Financial KPI &amp; Cash Flow Dashboard</h3>
-          <p class="card__type">Dreamtech Electronics</p>
+          <p class="card__kicker">Advanced Excel</p>
+          <h3 class="card__title">FURM Store Sales Analysis</h3>
+          <p class="card__type">Personal Project</p>
+          <a class="card__gh" href="https://github.com/Anjali-Talan/FURM-Store-Sales-Analysis/tree/main" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg>GitHub</a>
         </div>
         <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
         <template class="card__detail">
-          <p class="modal__lead">Revenue, OPEX, cash flow and business KPIs in one place, refreshed automatically.</p>
+          <p class="modal__lead">A full pivot-table build of FURM Store's 2022 sales and order data — sales, channel mix, geography and customer demographics in one interactive Excel dashboard.</p>
           <h4>The brief</h4>
-          <p>Management decisions were being made on reports that arrived late because they were assembled by hand.</p>
-          <h4>What I built</h4>
+          <p>Analysing FURM Store's 2022 sales and order data in Microsoft Excel — data cleaning, pivot-table analysis and an interactive dashboard covering sales performance, order status, customer demographics, states and sales channels.</p>
+          <h4>Key findings</h4>
           <ul>
-            <li>Power BI dashboards tracking <strong>revenue, OPEX, cash flow</strong> and core business KPIs.</li>
-            <li>Automated financial reports feeding the same numbers, so the dashboard and the pack never disagreed.</li>
-            <li>Statement-level analysis supporting forecasting and budgeting cycles.</li>
+            <li>Total sales of <strong>₹21.14M</strong> across 31K+ orders, with ~92% delivered.</li>
+            <li>Women contributed <strong>~64%</strong> of total sales versus ~36% from men.</li>
+            <li>Maharashtra was the top state (₹2.99M), followed by Karnataka (₹2.65M); March was the strongest month (₹1.93M), November the weakest (₹1.62M).</li>
+            <li>Amazon led order channels (~35%), followed by Myntra (~23%) and Flipkart (~22%).</li>
           </ul>
-          <h4>Impact</h4>
-          <ul><li><strong>25%</strong> reduction in report turnaround time.</li></ul>
-          <p class="modal__meta"><strong>Tools:</strong> Power BI · Advanced Excel</p>
+          <h4>Business takeaways</h4>
+          <ul>
+            <li>Women are the primary customer segment, and Maharashtra/Karnataka are the strongest regional markets.</li>
+            <li>A ~92% delivery rate is strong, though returns, refunds and cancellations remain an improvement opportunity.</li>
+          </ul>
+          <p class="modal__meta"><strong>Tools:</strong> Microsoft Excel · Pivot Tables &amp; Charts · Slicers</p>
+          <a class="btn btn--ghost btn--sm" href="https://github.com/Anjali-Talan/FURM-Store-Sales-Analysis/tree/main" target="_blank" rel="noopener" style="margin-top:1rem">View on GitHub<svg class="ico"><use href="#i-github"/></svg></a>
         </template>
       </article>
 
-      <article class="card card--project reveal" data-cat="powerbi excel" tabindex="0" role="button" aria-label="Open details: Operations MIS and SLA Performance Dashboard">
-        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-bars"/></svg></div>
+      <article class="card card--project reveal" data-cat="powerbi" tabindex="0" role="button" aria-label="Open details: Power BI Financial Performance Analysis">
+        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-line"/></svg></div>
         <div class="card__body">
-          <p class="card__kicker">Power BI · Advanced Excel</p>
-          <h3 class="card__title">Operations MIS &amp; SLA Performance Dashboard</h3>
-          <p class="card__type">Magicpin</p>
+          <p class="card__kicker">Power BI</p>
+          <h3 class="card__title">Power BI Financial Performance Analysis</h3>
+          <p class="card__type">Personal Project</p>
+          <a class="card__gh" href="https://github.com/Anjali-Talan/powerbi-financial-performance-analysis/tree/main" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg>GitHub</a>
         </div>
         <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
         <template class="card__detail">
-          <p class="modal__lead">15+ operational KPIs in one automated MIS — order fulfilment, SLA adherence, merchant onboarding and team productivity.</p>
+          <p class="modal__lead">A six-page Power BI dashboard turning three years of general-ledger data into an executive view of revenue, profitability, geography, balance sheet and cash flow.</p>
           <h4>The brief</h4>
-          <p>Operations was tracking performance across several disconnected reports, each rebuilt manually. Nobody had a single view of whether SLAs were actually being met.</p>
-          <h4>What I built</h4>
+          <p>Built to answer five questions: how financial performance is changing, what's driving revenue and profitability, which countries contribute most value, what the company's financial position is, and where cash is generated and deployed — covering 2018–2020.</p>
+          <h4>Key findings</h4>
           <ul>
-            <li>Automated MIS reports and Power BI dashboards covering <strong>15+ KPIs</strong>.</li>
-            <li>Analysis over <strong>120K+ operational and transaction records</strong> using Power Query, Pivot Tables and XLOOKUP to surface process inefficiencies.</li>
+            <li>Revenue grew from <strong>3.58M (2018)</strong> to <strong>7.84M (2020)</strong>, with gross profit growing alongside it from 2.38M to 5.34M.</li>
+            <li>Net profit margin moved from 17.45% (2018) up to 22.87% (2019), then fell back to 16.46% (2020) as operating costs — sales &amp; distribution, marketing, admin, D&amp;A — rose.</li>
+            <li>New Zealand posted the highest net-profit margin (37.35%), while Australia was negative (-11.86%); the USA was the largest contributor by sales and gross profit.</li>
+            <li>Current ratio stayed above 5x across the period; operations were consistently cash-generative while investing was a net outflow and financing a net inflow.</li>
           </ul>
-          <h4>Impact</h4>
-          <ul>
-            <li><strong>40%</strong> less manual reporting effort.</li>
-            <li><strong>18%</strong> reduction in operational turnaround time (TAT).</li>
-            <li><strong>25%</strong> improvement in data accuracy.</li>
-          </ul>
-          <p class="modal__meta"><strong>Tools:</strong> Power BI · Advanced Excel (Power Query, Pivot Tables, XLOOKUP)</p>
+          <h4>Dashboard pages</h4>
+          <ul><li>Executive Overview, P&amp;L, Sales &amp; Profitability, Country Analysis, Balance Sheet, Cash Flow.</li></ul>
+          <p class="modal__meta"><strong>Tools:</strong> Power BI · DAX measures · KPI cards · Waterfall &amp; matrix visuals</p>
+          <a class="btn btn--ghost btn--sm" href="https://github.com/Anjali-Talan/powerbi-financial-performance-analysis/tree/main" target="_blank" rel="noopener" style="margin-top:1rem">View on GitHub<svg class="ico"><use href="#i-github"/></svg></a>
         </template>
       </article>
 
-      <article class="card card--project reveal" data-reveal-delay="60" data-cat="excel sql" tabindex="0" role="button" aria-label="Open details: Process RCA and Data Validation Framework">
-        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-flow"/></svg></div>
+      <article class="card card--project reveal" data-reveal-delay="60" data-cat="powerbi sql excel" tabindex="0" role="button" aria-label="Open details: US Companies Financial Analysis">
+        <div class="card__thumb"><svg viewBox="0 0 320 180" class="thumb"><use href="#t-table"/></svg></div>
         <div class="card__body">
-          <p class="card__kicker">Excel · SQL · Process</p>
-          <h3 class="card__title">Process RCA &amp; Data Validation Framework</h3>
-          <p class="card__type">Magicpin</p>
+          <p class="card__kicker">Excel · SQL · Power BI</p>
+          <h3 class="card__title">US Companies Financial Analysis</h3>
+          <p class="card__type">Personal Project</p>
+          <a class="card__gh" href="https://github.com/Anjali-Talan/US-COMPANIES-FINANCIAL-ANALYSIS/tree/main" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg>GitHub</a>
         </div>
         <span class="card__open">View case study<svg class="ico"><use href="#i-arrow"/></svg></span>
         <template class="card__detail">
-          <p class="modal__lead">Finding out why tickets were escalating — then building the reporting framework that kept it from recurring.</p>
-          <h4>The problem</h4>
-          <p>Escalations were rising and SLA compliance was slipping, but the reporting couldn't say where in the process things were breaking.</p>
-          <h4>What I did</h4>
+          <p class="modal__lead">A financial screening and benchmarking model scoring 226 US companies against their industry peers — not a price prediction, a fundamentals check.</p>
+          <h4>The question</h4>
+          <p>Which companies demonstrate stronger financial health compared with their industry peers, based on Profit Margin, Revenue Growth, Current Ratio, ROA, Debt-to-Equity and ROE?</p>
+          <h4>Method</h4>
           <ul>
-            <li>Ran <strong>root cause analysis</strong> with cross-functional teams to isolate the actual process gaps.</li>
-            <li>Built scalable reporting and <strong>data validation frameworks</strong>, and documented SOPs so the process survived handover.</li>
+            <li>Cleaned and benchmarked company financials against industry averages in Excel, scoring one point per metric that beat the industry benchmark, for a <strong>0–6 Financial Health Score</strong>.</li>
+            <li>Used SQL (CASE WHEN, CTEs, window functions, RANK() and PARTITION BY) to screen, rank and compare companies within industries.</li>
+            <li>Built a three-page Power BI dashboard: Financial Overview, Company Deep Dive and Industry Analysis.</li>
           </ul>
-          <h4>Impact</h4>
+          <h4>Key findings</h4>
           <ul>
-            <li><strong>20%</strong> fewer ticket escalations.</li>
-            <li><strong>15%</strong> increase in SLA compliance.</li>
-            <li><strong>65%</strong> reduction in report generation time, at <strong>99%+ reporting accuracy</strong>.</li>
+            <li>Average Financial Health Score was <strong>~2.33 / 6</strong>; 3 companies scored a maximum 6, 26 were Strong and 37 Good, against 126 Weak.</li>
+            <li>Strong performance was spread across multiple industries rather than concentrated in one, and high ROE didn't always mean stronger financial health once leverage was factored in.</li>
           </ul>
-          <p class="modal__meta"><strong>Tools:</strong> Advanced Excel · SQL · RCA · SOP documentation</p>
+          <p class="modal__meta"><strong>Tools:</strong> Excel (PivotTables, XLOOKUP, benchmarking) · SQL (CTEs, window functions) · Power BI (DAX, KPI cards)</p>
+          <a class="btn btn--ghost btn--sm" href="https://github.com/Anjali-Talan/US-COMPANIES-FINANCIAL-ANALYSIS/tree/main" target="_blank" rel="noopener" style="margin-top:1rem">View on GitHub<svg class="ico"><use href="#i-github"/></svg></a>
         </template>
       </article>
 
@@ -698,7 +639,7 @@
         <h3 class="cert__title">Career Essentials in Data Analysis by Microsoft and LinkedIn</h3>
         <p class="cert__issuer">Microsoft</p>
         <ul class="tags tags--sm"><li>Data Analytics</li><li>Data Analysis</li><li>+1</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Career Essentials in Data Analysis by Microsoft and LinkedIn.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Career Essentials in Data Analysis by Microsoft and LinkedIn.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="40" data-issuer="linkedin">
@@ -706,7 +647,7 @@
         <h3 class="cert__title">Introduction to Career Skills in Data Analytics (2022)</h3>
         <p class="cert__issuer">LinkedIn</p>
         <ul class="tags tags--sm"><li>Tech Career Skills</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Introduction to Career Skills in Data Analytics 2022.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Introduction to Career Skills in Data Analytics 2022.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="80" data-issuer="linkedin">
@@ -714,7 +655,7 @@
         <h3 class="cert__title">Data Visualization for Data Analysts and Analytics</h3>
         <p class="cert__issuer">LinkedIn</p>
         <ul class="tags tags--sm"><li>Data Visualization</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Data Visualization for Data Analysts and Analytics.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Data Visualization for Data Analysts and Analytics.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="120" data-issuer="linkedin">
@@ -722,7 +663,7 @@
         <h3 class="cert__title">Data Analytics for Business Professionals</h3>
         <p class="cert__issuer">LinkedIn</p>
         <ul class="tags tags--sm"><li>Business Analytics</li><li>Data Analytics</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Data Analytics for Business Professionals.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Data Analytics for Business Professionals.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert card--feature reveal" data-issuer="google">
@@ -732,7 +673,7 @@
         <ul class="tags tags--sm"><li>SQL</li><li>R</li><li>Spreadsheets</li><li>+6</li></ul>
         <div class="cert__foot">
           <span class="cert__flag"><svg class="ico"><use href="#i-badge"/></svg>Flagship credential</span>
-          <a class="cert__link" href="assets/img/Certifications/Google data analytics professonal certificate.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+          <a class="cert__link" href="assets/img/Certifications/Google data analytics professonal certificate.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
         </div>
       </article>
 
@@ -741,7 +682,7 @@
         <h3 class="cert__title">Cybersecurity Analyst Job Simulation</h3>
         <p class="cert__issuer">Forage</p>
         <ul class="tags tags--sm"><li>Job Simulation</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Forage - Cybersecurity Analyst.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Forage - Cybersecurity Analyst.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="80" data-issuer="forage">
@@ -749,7 +690,7 @@
         <h3 class="cert__title">Data Visualisation: Empowering Business with Effective Insights (TATA)</h3>
         <p class="cert__issuer">Forage</p>
         <ul class="tags tags--sm"><li>Data Visualization</li><li>Business Insights</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Forage -Data Visualisation.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Forage -Data Visualisation.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="120" data-issuer="linkedin">
@@ -757,7 +698,7 @@
         <h3 class="cert__title">Learning Data Analytics: 2 — Extending and Applying Core Knowledge</h3>
         <p class="cert__issuer">LinkedIn</p>
         <ul class="tags tags--sm"><li>Data Analytics</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Learning Data Analytics Part 2 Extending and Applying Core Knowledge.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Learning Data Analytics Part 2 Extending and Applying Core Knowledge.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-issuer="linkedin">
@@ -765,7 +706,7 @@
         <h3 class="cert__title">Learning Data Analytics: 1 — Foundations</h3>
         <p class="cert__issuer">LinkedIn</p>
         <ul class="tags tags--sm"><li>Data Analytics</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Learning Data Analytics 1 Foundations.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Learning Data Analytics 1 Foundations.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="40" data-issuer="other">
@@ -773,7 +714,7 @@
         <h3 class="cert__title">Tableau Certified</h3>
         <p class="cert__issuer">Udemy</p>
         <ul class="tags tags--sm"><li>Data Visualization</li><li>Tableau</li><li>+1</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/Udemy Tableau Certifcation.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/Udemy Tableau Certifcation.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="80" data-issuer="other">
@@ -781,7 +722,7 @@
         <h3 class="cert__title">NISM-Series-V-A: Mutual Fund Distributors</h3>
         <p class="cert__issuer">SEBI</p>
         <ul class="tags tags--sm"><li>Mutual Funds</li><li>Regulatory</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/NISM CERTIFICATION.jpg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/NISM CERTIFICATION.jpg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
       <article class="card card--cert reveal" data-reveal-delay="120" data-issuer="other">
@@ -789,7 +730,7 @@
         <h3 class="cert__title">MySQL</h3>
         <p class="cert__issuer">Great Learning</p>
         <ul class="tags tags--sm"><li>SQL</li><li>Databases</li></ul>
-        <a class="cert__link" href="assets/img/Certifications/SQL project for beginner certification.jpeg">View certificate<svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="cert__link" href="assets/img/Certifications/SQL project for beginner certification.jpeg" target="_blank" rel="noopener">View certificate<svg class="ico"><use href="#i-external"/></svg></a>
       </article>
 
     </div>
@@ -937,17 +878,6 @@
     <h2 class="modal__title" id="modalTitle"></h2>
     <p class="modal__type" id="modalType"></p>
     <div class="modal__content" id="modalContent"></div>
-  </div>
-</div>
-
-<!-- ============ CERTIFICATE MODAL ============ -->
-<div class="modal modal--cert" id="certModal" hidden>
-  <div class="modal__scrim" data-close></div>
-  <div class="modal__panel modal__panel--cert" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
-    <button class="modal__close" type="button" data-close aria-label="Close"><svg class="ico"><use href="#i-close"/></svg></button>
-    <img class="cert-modal__img" id="certModalImg" src="" alt="">
-    <p class="cert-modal__title" id="certModalTitle"></p>
-    <a class="cert-modal__open" id="certModalOpen" href="#" target="_blank" rel="noopener">Open full size in a new tab<svg class="ico"><use href="#i-external"/></svg></a>
   </div>
 </div>
 

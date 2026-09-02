@@ -315,6 +315,13 @@
       });
     });
 
+    // The GitHub link sits inside a clickable project card — without this it
+    // would also pop the case-study modal on top of the new tab it opens.
+    $$('.card__gh').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.stopPropagation(); });
+      a.addEventListener('keydown', function (e) { e.stopPropagation(); });
+    });
+
     $$('[data-close]', root).forEach(function (el) { el.addEventListener('click', close); });
 
     document.addEventListener('keydown', function (e) {
@@ -325,71 +332,6 @@
       // Keep keyboard focus inside the dialog while it is open.
       var focusables = $$('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])', panel)
         .filter(function (el) { return el.offsetParent !== null; });
-      if (!focusables.length) return;
-      var first = focusables[0], last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-  })();
-
-  /* ---------- Certificate modal ---------- */
-  (function certModal() {
-    var root = $('#certModal');
-    if (!root) return;
-
-    var img      = $('#certModalImg');
-    var title    = $('#certModalTitle');
-    var openLink = $('#certModalOpen');
-    var lastFocused = null;
-
-    function open(link) {
-      var card  = link.closest('.card--cert');
-      var label = (($('.cert__title', card) || {}).textContent || 'Certificate').trim();
-      var href  = link.getAttribute('href');
-
-      img.src = href;
-      img.alt = label;
-      title.textContent = label;
-      if (openLink) openLink.href = href;
-
-      lastFocused = document.activeElement;
-      root.hidden = false;
-      document.body.classList.add('is-locked');
-      // Forced reflow (see the project modal above) so the entrance
-      // transition runs even if this tab is currently backgrounded.
-      void root.offsetWidth;
-      root.classList.add('is-open');
-      var closeBtn = $('.modal__close', root);
-      if (closeBtn) closeBtn.focus();
-    }
-
-    function close() {
-      root.classList.remove('is-open');
-      document.body.classList.remove('is-locked');
-      window.setTimeout(function () {
-        if (!root.classList.contains('is-open')) {
-          root.hidden = true;
-          img.src = '';
-        }
-      }, 280);
-      if (lastFocused && lastFocused.focus) lastFocused.focus();
-    }
-
-    $$('.cert__link').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        open(link);
-      });
-    });
-
-    $$('[data-close]', root).forEach(function (el) { el.addEventListener('click', close); });
-
-    document.addEventListener('keydown', function (e) {
-      if (root.hidden) return;
-      if (e.key === 'Escape') { close(); return; }
-      if (e.key !== 'Tab') return;
-
-      var focusables = $$('a[href], button', root).filter(function (el) { return el.offsetParent !== null; });
       if (!focusables.length) return;
       var first = focusables[0], last = focusables[focusables.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
