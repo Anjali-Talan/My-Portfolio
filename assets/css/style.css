@@ -807,6 +807,37 @@ html[data-theme="dark"] .field__error, html[data-theme="dark"] .field.has-error 
 }
 .modal__meta strong { color: var(--fg-muted); }
 
+/* ---------- 19b. Certificate modal ---------- */
+/* Reuses .modal / .modal__scrim / .modal__panel / .modal__close from the
+   project modal above for the overlay, scrim fade and open/close transition —
+   only the panel layout and image itself are certificate-specific. */
+.modal__panel--cert {
+  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+.cert-modal__img {
+  max-width: 100%;
+  max-height: 68vh;
+  width: auto;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+  background: var(--surface-2);
+  object-fit: contain;
+}
+.cert-modal__title { font-family: var(--font-display); font-weight: 600; font-size: var(--step-1); }
+.cert-modal__open {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8125rem; font-weight: 600; color: var(--accent);
+  transition: gap var(--dur-fast) var(--ease);
+}
+.cert-modal__open:hover { gap: .55rem; }
+.cert-modal__open .ico { width: 14px; height: 14px; }
+
 /* ---------- 20. Toast ---------- */
 .toast {
   position: fixed; left: 50%; bottom: 2rem; z-index: var(--z-toast);
