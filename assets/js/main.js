@@ -275,14 +275,124 @@
     var content = $('#modalContent');
     var lastFocused = null;
 
-    function open(card) {
-      var tmpl   = $('.card__detail', card);
-      var srcSvg = $('.thumb', card);
+    // Project gallery assets. These paths match the folders currently in
+    // assets/img/Project Images/ on the GitHub repository.
+    var galleries = {
+      'Macroeconomic Indicators & Stock Market Returns': [
+        'assets/img/Project Images/Macroeconomic Indicators & Stock Market Returns/1.png',
+        'assets/img/Project Images/Macroeconomic Indicators & Stock Market Returns/2.png',
+        'assets/img/Project Images/Macroeconomic Indicators & Stock Market Returns/forecast_plot.png'
+      ],
+      'HR & Sales Analytics Dashboard': [
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/HR 1.png',
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/HR 2.png',
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/HR 3.png',
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/HR 4.png',
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/HR 5.png',
+        'assets/img/Project Images/HR & Sales Analytics Dashboard/Sales Dashboard.png'
+      ],
+      'FURM Store Sales Analysis': [
+        'assets/img/Project Images/FURM Store Sales Analysis/1.png'
+      ],
+      'Power BI Financial Performance Analysis': [
+        'assets/img/Project Images/Power BI Financial Performance Analysis/1.jpg',
+        'assets/img/Project Images/Power BI Financial Performance Analysis/2.jpg',
+        'assets/img/Project Images/Power BI Financial Performance Analysis/3.jpg',
+        'assets/img/Project Images/Power BI Financial Performance Analysis/4.jpg',
+        'assets/img/Project Images/Power BI Financial Performance Analysis/5.jpg',
+        'assets/img/Project Images/Power BI Financial Performance Analysis/6.jpg'
+      ],
+      'US Companies Financial Analysis': [
+        'assets/img/Project Images/US Companies Financial Analysis/1.jpg',
+        'assets/img/Project Images/US Companies Financial Analysis/2.jpg',
+        'assets/img/Project Images/US Companies Financial Analysis/3.jpg'
+      ]
+    };
 
-      thumb.innerHTML = srcSvg ? srcSvg.outerHTML : '';
+    var galleryIndex = 0;
+    var galleryItems = [];
+
+    function showGalleryImage(index) {
+      var img = $('#projectGalleryImg', thumb);
+      var counter = $('#projectGalleryCounter', thumb);
+      var dots = $('#projectGalleryDots', thumb);
+      if (!img || !counter || !dots || !galleryItems.length) return;
+
+      galleryIndex = index;
+      img.src = galleryItems[galleryIndex];
+      img.alt = title.textContent + ' — image ' + (galleryIndex + 1) + ' of ' + galleryItems.length;
+      counter.textContent = (galleryIndex + 1) + ' / ' + galleryItems.length;
+
+      $$('.project-gallery__dot', dots).forEach(function (dot, dotIndex) {
+        var active = dotIndex === galleryIndex;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        dot.tabIndex = active ? 0 : -1;
+      });
+    }
+
+    function renderGallery(projectTitle, card) {
+      galleryItems = galleries[projectTitle] || [];
+      galleryIndex = 0;
+
+      if (!galleryItems.length) {
+        var srcSvg = $('.thumb', card);
+        thumb.classList.remove('modal__thumb--gallery');
+        thumb.innerHTML = srcSvg ? srcSvg.outerHTML : '';
+        return;
+      }
+
+      thumb.classList.add('modal__thumb--gallery');
+      thumb.innerHTML =
+        '<div class="project-gallery" aria-label="' + projectTitle.replace(/"/g, '&quot;') + ' project images">' +
+          '<div class="project-gallery__stage">' +
+            '<img class="project-gallery__img" id="projectGalleryImg" src="" alt="" draggable="false">' +
+            '<button class="project-gallery__nav project-gallery__nav--prev" type="button" aria-label="Previous project image">' +
+              '‹' +
+            '</button>' +
+            '<button class="project-gallery__nav project-gallery__nav--next" type="button" aria-label="Next project image">' +
+              '›' +
+            '</button>' +
+            '<span class="project-gallery__counter" id="projectGalleryCounter" aria-live="polite"></span>' +
+          '</div>' +
+          '<div class="project-gallery__footer">' +
+            '<div class="project-gallery__dots" id="projectGalleryDots" role="tablist" aria-label="Choose project image"></div>' +
+          '</div>' +
+        '</div>';
+
+      var prev = $('.project-gallery__nav--prev', thumb);
+      var next = $('.project-gallery__nav--next', thumb);
+      var dots = $('#projectGalleryDots', thumb);
+
+      galleryItems.forEach(function (src, index) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'project-gallery__dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Show project image ' + (index + 1));
+        dot.addEventListener('click', function () { showGalleryImage(index); });
+        dots.appendChild(dot);
+      });
+
+      prev.addEventListener('click', function () {
+        showGalleryImage((galleryIndex - 1 + galleryItems.length) % galleryItems.length);
+      });
+
+      next.addEventListener('click', function () {
+        showGalleryImage((galleryIndex + 1) % galleryItems.length);
+      });
+
+      showGalleryImage(0);
+    }
+
+    function open(card) {
+      var tmpl = $('.card__detail', card);
+      var projectTitle = (($('.card__title', card) || {}).textContent || '').trim();
+
+      renderGallery(projectTitle, card);
       kicker.textContent = (($('.card__kicker', card) || {}).textContent || '').trim();
-      title.textContent  = (($('.card__title',  card) || {}).textContent || '').trim();
-      type.textContent   = (($('.card__type',   card) || {}).textContent || '').trim();
+      title.textContent  = projectTitle;
+      type.textContent   = (($('.card__type', card) || {}).textContent || '').trim();
       content.innerHTML  = '';
       if (tmpl) content.appendChild(tmpl.content.cloneNode(true));
 
@@ -303,7 +413,11 @@
       root.classList.remove('is-open');
       document.body.classList.remove('is-locked');
       window.setTimeout(function () {
-        if (!root.classList.contains('is-open')) root.hidden = true;
+        if (!root.classList.contains('is-open')) {
+          root.hidden = true;
+          thumb.innerHTML = '';
+          thumb.classList.remove('modal__thumb--gallery');
+        }
       }, 280);
       if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
@@ -327,6 +441,19 @@
     document.addEventListener('keydown', function (e) {
       if (root.hidden) return;
       if (e.key === 'Escape') { close(); return; }
+
+      if (e.key === 'ArrowLeft' && galleryItems.length > 1) {
+        e.preventDefault();
+        showGalleryImage((galleryIndex - 1 + galleryItems.length) % galleryItems.length);
+        return;
+      }
+
+      if (e.key === 'ArrowRight' && galleryItems.length > 1) {
+        e.preventDefault();
+        showGalleryImage((galleryIndex + 1) % galleryItems.length);
+        return;
+      }
+
       if (e.key !== 'Tab') return;
 
       // Keep keyboard focus inside the dialog while it is open.
